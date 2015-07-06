@@ -103,7 +103,8 @@ while 'head_kinect' not in available:
 	rospy.sleep(0.5)
 	print "Waiting for Skeletal Frames..."
 	available = listener.getFrameStrings()
-	print "Found Kinect Frame!"
+
+print "Found Kinect Frame!"
 
 for i in range(0,20):
 # Get the current pose
@@ -117,23 +118,13 @@ for i in range(0,20):
 	left_current = left_limb.joint_angles()
 	left_target = left_current
 	left_target = modify_angles('left', left_target)
+	
 	request_motion('left', left_target)
 	rospy.sleep(0.5)
+	
+	# print "Waiting before assuming next position in..."
+	
+	# for i in reversed(range(1,6)):
+	#     print "    %s ..." % i
 
-# v1 = (1,0,0)
-# v2 = (0,0,0)
-# v3 = (11,0,0)
-
-# v1 = (0,0,1)
-# v2 = (1,0,0)
-# v3 = (0,1,-1)
-# pi = 3.1415
-# print "angle between %s and %s is %s pi" % (v1, v2, get_angle(v1,v2)/pi)
-# print "dihedral angle is: %spi" % (get_dihedral(v1, v2, v3)/pi)
-
-
-
-# Poll Skeletal Tracker
-# Find the angles
-# Publish them to baxter
-# Repeat
+print "Done."	
